@@ -2,7 +2,6 @@ import  React, { useEffect, useState }  from "react";
 import Sample from './components/Sample';
 import Card from "./components/Card"
 import Axios from "axios";
-// import Card2 from './components/Card2'
 //  export const nameContext = React.createContext();
  
 const App=()=>{
