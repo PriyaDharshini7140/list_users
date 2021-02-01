@@ -1,25 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import  React, { useEffect, useState }  from "react";
+import Sample from './components/Sample';
+import Card from "./components/Card"
+import Axios from "axios";
+// import Card2 from './components/Card2'
+//  export const nameContext = React.createContext();
+ 
+const App=()=>{
+  const [Data,setData] = useState([]);
+  useEffect(()=>{
+    Axios.get('https://jsonplaceholder.typicode.com/users').then(
+      (res)=>setData(res.data)
+       )
+    },[])
+   console.log(Data);
+    const search=(b)=>{
+  const d= Data.filter((e)=> {
+     if(e.name === b)
+   console.log(e);
+    setData(e)
+     })
+ }
+return(
+ <div>
+<center>
+<Sample name={search}></Sample>
+  <Card data={Data}/>
+ 
+</center>
+  </div>
+  
+)
 }
-
 export default App;
