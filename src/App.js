@@ -2,7 +2,7 @@ import  React, { useEffect, useState }  from "react";
 import Sample from './components/Sample';
 import Card from "./components/Card"
 import Axios from "axios";
-//  export const nameContext = React.createContext();
+
  
 const App=()=>{
   const [Data,setData] = useState([]);
@@ -11,21 +11,24 @@ const App=()=>{
       (res)=>setData(res.data)
        )
     },[])
+    const [LoadType,setLoadType] = useState(Boolean(false))
    console.log(Data);
+  console.log(LoadType);
     const search=(b)=>{
-  const d= Data.filter((e)=> {
-     if(e.name === b)
-   console.log(e);
-    setData(e)
-     })
- }
+  const d= Data.filter(e => e.name === b)
+  console.log(d);
+  setData(d)
+  setLoadType(Boolean(true))
+    }
+  
+
 return(
+  
  <div>
 <center>
-<Sample name={search}></Sample>
-  <Card data={Data}/>
- 
+<Sample name={search} ></Sample>
 </center>
+<Card data={Data}load={LoadType}></Card>
   </div>
   
 )
